@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
+import Menu from './Menu';
 
 const Home =(props) => {
   return(
-    //not using inline styling, just as an example of how to
     <View style={styles.container}>
       <Image
         style={styles.globologo}
@@ -13,6 +13,9 @@ const Home =(props) => {
       <Text style={styles.subtitle}>{props.username}</Text>
       <View style={styles.textcontainer}>
         <Text style={styles.content}>{introText}</Text>
+      </View>
+      <View style={styles.menu}>
+        <Menu />
       </View>
     </View>
   );
@@ -24,11 +27,12 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
     alignItems: 'center',
-    padding: 20
+    paddingTop: 20,
+    paddingBottom: 20,
+    flex: 1
   },
   textcontainer: {
-    textAlign: 'center',
-    paddingTop: 10
+    padding: 20
   },
   globologo: {
     height: 100,
@@ -44,6 +48,10 @@ const styles = StyleSheet.create({
   content: {
     fontFamily: 'Ubuntu-Light',
     fontWeight: '300'
+  },
+  menu: {
+    position: 'absolute',
+    bottom: 10
   }
 });
 

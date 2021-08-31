@@ -1,22 +1,62 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
+import 'react-native-gesture-handler';
 import React from 'react';
 import type {Node} from 'react';
 import { StatusBar } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack'
+import { NavigationContainer } from '@react-navigation/native';
 import Home from './Home';
+import Tickets from './Tickets';
+import Contact from './Contact';
+import TicketPurchase from './TicketPurchase';
+
+const Stack = createStackNavigator();
 
 const App: () => React$Node = () => {
 
   return (
     <>
       <StatusBar barStyle={'dark-content'} hidden />
-      <Home username='Jiujitsiero' />
+      <NavigationContainer>
+        <Stack.Navigator
+        initialRouteName='Home'
+        headerMode='screen'
+        >
+          <Stack.Screen
+           name='Home'
+           options={{
+             headerShown: false
+             }}>
+             {(props) => <Home {...props} username='Grappling Fan' />}
+          </Stack.Screen>
+          <Stack.Screen
+          name='Tickets'
+          component={Tickets}
+          options={{
+            headerTitleAlign: 'center',
+            headerTitleStyle: {fontFamily: 'Ubuntu-Regular'}
+            }}
+          />
+          <Stack.Screen
+          name='Contact'
+          component={Contact}
+          options={{
+            headerTitleAlign: 'center',
+            headerTitleStyle: {fontFamily: 'Ubuntu-Regular'},
+            headerTitle: 'Contact Us'
+            }}
+          />
+          <Stack.Screen
+          name='Purchase'
+          component={TicketPurchase}
+          options={{
+            headerTitleAlign: 'center',
+            headerTitleStyle: {fontFamily: 'Ubuntu-Regular'},
+            headerTitle: 'Purchase Tickets'
+            }}
+          />
+
+        </Stack.Navigator>
+      </NavigationContainer>
     </>
   );
 };
